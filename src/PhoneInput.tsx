@@ -41,7 +41,7 @@ export default class PhoneInput<TextComponentType extends React.ComponentType = 
                 initialValue = `+${initialValue}`;
             }
 
-            initialCountry = PhoneNumber.getCountryCodeOfNumber(initialValue);
+            initialCountry = PhoneNumber.getCountryCodeOfNumber(initialValue) as string | undefined;
             displayValue = this.format(initialValue, initialCountry);
         } else {
             const countryData = PhoneNumber.getCountryDataByCode(initialCountry);
@@ -171,7 +171,7 @@ export default class PhoneInput<TextComponentType extends React.ComponentType = 
         modifiedNumber = allowZeroAfterCountryCode
             ? modifiedNumber
             : this.possiblyEliminateZeroAfterCountryCode(modifiedNumber);
-        const iso2: string = PhoneNumber.getCountryCodeOfNumber(modifiedNumber);
+        const iso2: string = PhoneNumber.getCountryCodeOfNumber(modifiedNumber) as string;
 
         let countryDialCode;
         if (iso2) {
